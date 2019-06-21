@@ -1,4 +1,7 @@
-<img [src]="imgBaseUrl+'/'+movieDetail?.backdrop_path" alt="">
+<ng-container *ngIf="movieDetail?.backdrop_path">
+  <img [src]="imgBaseUrl+'/'+movieDetail?.backdrop_path" alt="">
+</ng-container>
+
 {{ movieDetail | json }}
 
 <hr>

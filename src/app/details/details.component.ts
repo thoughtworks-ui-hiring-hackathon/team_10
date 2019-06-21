@@ -15,8 +15,12 @@ export class DetailsComponent implements OnInit {
   relatedMovies:any
   imgBaseUrl:string ='https://image.tmdb.org/t/p/original';
   ngOnInit() {
-    this.id = this.route.snapshot.paramMap.get("id")
-    this.rest.getDetails('https://api.themoviedb.org/3/movie/'+this.id+'?api_key=7b838346925313a3f9f3aec97733517c&language=en-US&append_to_response=credits').subscribe(
+    let detailParams = {
+      "language":"en-US",
+      "append_to_response":"credits"
+    };
+    this.id = this.route.snapshot.paramMap.get("id");
+    this.rest.getDetails('https://api.themoviedb.org/3/movie/'+this.id,detailParams).subscribe(
       (response) => {
         this.movieDetail = response;
         console.log(response);
@@ -25,7 +29,7 @@ export class DetailsComponent implements OnInit {
       }
     );
 
-    this.rest.getDetails('https://api.themoviedb.org/3/movie/'+this.id+'/similar?api_key=7b838346925313a3f9f3aec97733517c&language=en-US&page=1').subscribe((response)=>{
+    this.rest.getDetails('https://api.themoviedb.org/3/movie/'+this.id+'/similar?&language=en-US&page=1', {}).subscribe((response)=>{
         this.relatedMovies = response;
     },(err)=>{
       console.error(err)
