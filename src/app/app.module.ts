@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from "@angular/common/http";
+import { CarouselModule } from "ngx-bootstrap";
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -26,7 +28,9 @@ import { FormsModule } from '@angular/forms';
     HttpClientModule,
     FormsModule,
     ProgressbarModule.forRoot(),
-    RatingModule.forRoot()
+    RatingModule.forRoot(),
+    CarouselModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]

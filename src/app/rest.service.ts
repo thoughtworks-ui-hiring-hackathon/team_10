@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient,HttpParams } from "@angular/common/http";
 import { environment } from '../environments/environment';
-
+// TODO remove unused
 
 @Injectable({
   providedIn: 'root'
 })
 export class RestService {
   apiKey = environment.api_key;
-  apiParams:HttpParams;
+  apiParams;
   constructor(private http: HttpClient) { 
   }
 

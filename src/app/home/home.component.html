@@ -1,3 +1,112 @@
-<p>
-  home works!
-</p>
+
+
+<div class="container-fluid">
+<br>  
+  <!-- latest movies -->
+<ng-container *ngIf="movies?.latestMovies?.results">
+  <h3>Latest</h3>
+  <br>
+    <!-- <carousel [itemsPerSlide]=4
+              [singleSlideOffset]=true
+              [interval]=false>
+      <slide *ngFor = "let movie of movies?.latestMovies.results;let index = index">
+          <div class="card" style="width: 18rem;">
+            <img class="card-img-top" src="{{imageBaseUrl +'w500'+ movie.poster_path}}" alt="Card image cap">
+            <div class="card-body">
+              <h5 class="card-text">{{movie.title}}</h5>
+              <small class="card-text">genre</small>
+              <a href="" class="pull-right"><span class="card-text">show more</span></a>
+            </div>
+          </div>
+      </slide>
+    </carousel>  -->
+
+
+    <carousel [showIndicators]="false"
+          [itemsPerSlide]="itemsPerSlide"
+          [singleSlideOffset]="singleSlideOffset"
+          [noWrap]="!noWrap"
+          [interval]="false"
+          [startFromIndex]="0">
+        <slide *ngFor="let movie of movies.latestMovies.results; let index=index">
+          <div class="card" style="width: 18rem;">
+              <img class="card-img-top" src="{{imageBaseUrl +'w500'+ movie.poster_path}}" alt="Card image cap">
+              <div class="card-body">
+                
+                <div class="d-flex flex-row">
+                  <div>
+                    <h5 class="card-text">{{movie.title}}</h5>
+                  </div>
+                </div>  
+                <div><small class="card-text">genre</small></div>
+                <div>
+                  <a href="" [routerLink]="['/details/'+movie.id]" class="card-link" ><span class="card-text">show more</span></a>
+                </div>
+              </div>
+          </div>
+      </slide>
+    </carousel>
+    </ng-container>
+<!-- end latest movies -->
+  <br><br>
+<!-- trending movies -->
+  <ng-container *ngIf="movies?.trendingMovies?.results"> 
+    <h3>Trending</h3>
+    <br>
+    <carousel [showIndicators]="false" 
+          [itemsPerSlide]="itemsPerSlide"
+          [singleSlideOffset]="singleSlideOffset"
+          [noWrap]="!noWrap"
+          [interval]="false"
+          [startFromIndex]="0">
+        <slide *ngFor="let movie of movies.trendingMovies.results; let index=index">
+          <div class="card" style="width: 18rem;">
+              <img class="card-img-top" src="{{imageBaseUrl +'w500'+ movie.poster_path}}" alt="Card image cap">
+              <div class="card-body">
+                  <div class="d-flex flex-row">
+                      <div>
+                        <h5 class="card-text">{{movie.title}}</h5>
+                      </div>
+                    </div>  
+                    <div><small class="card-text">genre</small></div>
+                    <div>
+                      <a href="" [routerLink]="['/details/'+movie.id]" class="card-link" ><span class="card-text">show more</span></a>
+                    </div>
+              </div>
+          </div>
+      </slide>
+    </carousel>
+  </ng-container>
+  <!-- end trending movies -->
+  <br><br>
+  <!-- most watched movies -->
+  <ng-container *ngIf="movies?.popularMovies?.results">
+    <h3>Most Watched</h3>
+    <br>
+    <carousel [showIndicators]="false"
+    [itemsPerSlide]="itemsPerSlide"
+    [singleSlideOffset]="singleSlideOffset"
+    [noWrap]="!noWrap"
+    [interval]="false"
+    [startFromIndex]="0">
+    <slide *ngFor="let movie of movies.popularMovies.results; let index=index">
+      <div class="card" style="width: 18rem;">
+          <img class="card-img-top" src="{{imageBaseUrl +'w500'+ movie.poster_path}}" alt="Card image cap">
+          <div class="card-body">
+              <div class="d-flex flex-row">
+                  <div>
+                    <h5 class="card-text">{{movie.title}}</h5>
+                  </div>
+                </div>  
+                <div><small class="card-text">genre</small></div>
+                <div>
+                  <a href="" [routerLink]="['/details/'+movie.id]" class="card-link" ><span class="card-text">show more</span></a>
+                </div>
+          </div>
+      </div>
+    </slide>
+  </carousel>
+    <!-- end latest movies -->  
+  </ng-container>  
+
+  </div>
