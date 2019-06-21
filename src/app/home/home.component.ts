@@ -20,6 +20,9 @@ export class HomeComponent implements OnInit, OnDestroy {
   imageBaseUrl = Constants.IMAGE_BASE_URL;
   fetchDataSubject = new Subject();
 
+  max: number = 5;
+  isReadonly: boolean = true;
+
   constructor(private fetchData:RestService) { }
 
   ngOnInit() {
@@ -67,6 +70,10 @@ export class HomeComponent implements OnInit, OnDestroy {
   processResponse(movieType, response){
     if (response && movieType in this.movies)
       this.movies[movieType] = response;
+      this.movies[movieType].results.filter((el)=>{
+        el.vote_average = el.vote_average/2;
+      });
+      
    console.log('movietype',movieType,response);
   }
 
