@@ -31,6 +31,9 @@ export class DetailsComponent implements OnInit {
       (response) => {
         this.movieDetail = response;
         this.movieDetail.vote_average = response['vote_average'] /2;
+        this.movieDetail.director = this.movieDetail.credits.crew.filter((el)=>{
+          return el.job == 'Director';
+        });
         // console.log(response);
       }, (err) => {
         console.error(err);
