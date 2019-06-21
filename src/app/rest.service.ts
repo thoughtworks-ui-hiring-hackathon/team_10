@@ -20,8 +20,8 @@ export class RestService {
     //   }
     // }
     this.apiParams = {'api_key':this.apiKey,...params};
-    console.log('url',url);
-    console.log('params',this.apiParams);
+    // console.log('url',url);
+    // console.log('params',this.apiParams);
     return this.http.get(url,{"params":this.apiParams});
   }
 }

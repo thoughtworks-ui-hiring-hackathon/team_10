@@ -1,0 +1,19 @@
+.banner{
+    height: 100vh;
+    margin-bottom: 30px;
+    .btn-mark{
+        position: absolute;
+        right: 30px;
+        bottom: 15px;
+    }
+}
+.overview{
+    background: #f5f5f5;
+    border-color: #f5f5f5;
+    padding: 30px;
+    .list-group{
+        .list-group-item{
+            background: #f5f5f5;
+        }
+    }
+}

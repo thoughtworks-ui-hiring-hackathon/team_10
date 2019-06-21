@@ -1,9 +1,97 @@
 <ng-container *ngIf="movieDetail?.backdrop_path">
-  <img [src]="imgBaseUrl+'/'+movieDetail?.backdrop_path" alt="">
+  <div class="banner" [ngStyle]="{'background-image': 'url(' + imgBaseUrl+'/'+movieDetail?.backdrop_path +')'}">
+    <button type="button" class="btn btn-light btn-lg btn-mark">Mark as favorite </button>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <h1>
+          {{movieDetail.original_title}}
+        </h1>
+        <p>
+          {{movieDetail.overview}}
+        </p>
+
+      </div>
+      <div class="col-md-6">
+        <div class="card overview">
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              <div class="row">
+                <div class="col-4">
+                  <strong>Genre</strong>
+                </div>
+                <div class="col-8">
+                  <span *ngFor="let genre of movieDetail.genres; let last=last;">
+                    {{genre.name}}<span *ngIf="!last">, </span>
+                  </span>
+                </div>
+              </div>
+            </li>
+            <li class="list-group-item">
+
+              <div class="row">
+                <div class="col-4">
+                  <strong>Cast</strong>
+                </div>
+                <div class="col-8">
+                  <span *ngFor="let cast of movieDetail.credits.cast; let last=last;">
+                    {{cast.name}} <span *ngIf="!last">, </span>
+                  </span>
+                </div>
+              </div>
+            </li>
+            <li class="list-group-item">
+
+              <div class="row">
+                <div class="col-4">
+                  <strong>Director</strong>
+                </div>
+                <div class="col-8">
+                  <span *ngFor="let genre of movieDetail.genres; let i=index;">
+                    <!-- {{genre.name}}, -->
+                  </span>
+                </div>
+              </div>
+            </li>
+            <li class="list-group-item">
+
+              <div class="row">
+                <div class="col-4 align-self-center">
+                  <strong>Movie Rating</strong>
+                </div>
+                <div class="col-8 align-self-center">
+                   <rating [(ngModel)]="movieDetail.vote_average" [max]="max" [readonly]="isReadonly"></rating>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="row" *ngIf="relatedMovies">
+      <div class="col-12">
+        <h3>Related Movies</h3>
+      </div>
+      <div class="col-md-3 col-sm-4 col-xs-6" *ngFor="let movie of relatedMovies; let i=index;">
+        <div class="card" *ngIf="i<4">
+          <img class="card-img-top" [src]="imgBaseUrl+'/'+movie?.backdrop_path" alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title">
+              {{ (movie.original_title.length>12)? (movie.original_title | slice:0:12)+'..':(movie.original_title) }}
+              </h5>
+            <p class="card-text">Action, Adventure</p>
+            <rating [(ngModel)]="movie.vote_average" [max]="max" [readonly]="isReadonly"></rating>
+            <a [routerLink]="['/details/'+movie.id]" (click)="showMore(movie.id)" class="btn btn-link">Show more</a>
+            <!-- <button class="btn btn-link" (click)="showMore(movie.id)">Show more</button> -->
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+
+  </div>
 </ng-container>
-
-{{ movieDetail | json }}
-
-<hr>
-<hr>
-{{ relatedMovies | json}}
