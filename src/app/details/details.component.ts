@@ -11,7 +11,11 @@ export class DetailsComponent implements OnInit {
   constructor(private rest: RestService) { }
   movieDetail: any;
   ngOnInit() {
-    this.rest.getDetails('https://api.themoviedb.org/3/movie/508?api_key=7b838346925313a3f9f3aec97733517c&language=en-US&append_to_response=credits').subscribe(
+    let detailParams = {
+      "language":"en-US",
+      "append_to_response":"credits"
+    };
+    this.rest.getDetails('https://api.themoviedb.org/3/movie/508',detailParams).subscribe(
       (response) => {
         this.movieDetail = response;
         console.log(response);
